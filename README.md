@@ -10,14 +10,10 @@ Analizzare i dati di rinnovo delle polizze RCA provenienti dal gestionale di age
 - le destinazioni dei clienti che cambiano compagnia;
 - il profilo demografico dei clienti più inclini al cambio.
 
----
-
 ## Dataset e fonti
 - **Dati origine:** esportazioni dal gestionale di agenzia (2020–2025)
 - **Fonti esterne:** portale ANIA (visure RCA, stato copertura e compagnia)
 - **Formati utilizzati:** Excel, CSV e tabelle normalizzate in Power BI
-
----
 
 ## Workflow tecnico
 
@@ -26,25 +22,25 @@ Analizzare i dati di rinnovo delle polizze RCA provenienti dal gestionale di age
      ➤ automatizza il recupero dei file annuali dal gestionale e li separa per anno.
 
 2. **Accesso ai dati ANIA**
-   - Reperimento dati dal portale ANIA 
-     ➤ processo manuale di ricerca dati relativi alle polizze non rinnovate.
+   - Consultazione del portale ANIA
+     ➤ verifica dello stato di copertura assicurativa dei veicoli non rinnovati.
 
 3. **Pulizia e normalizzazione**
-   - Script `Pulizia & normalizzazione.ipynb`  
-     ➤ uniforma i nomi delle compagnie, rimuove duplicati e null, crea chiavi composite e classi di anzianità.
+   - Script Pulizia & normalizzazione.ipynb
+   ➤ unisce, deduplica e uniforma i dataset;
+   ➤ crea chiavi composite e colonne derivate (Anno, Tipo Veicolo, Stato ANIA, Età, Anzianità Contratto);
+   ➤ genera le tabelle derivate Compagnie Assicurative, Clienti e Veicoli.
 
 4. **Caricamento e modellazione Power BI**
    - Creazione di schema a **stella** (Fact Rinnovi + Dimensioni Anno, Compagnia, Subagenzia, Cliente)
    - Relazioni 1→N e misure DAX per analisi temporali e percentuali
 
----
-
 ## Struttura del report Power BI
 1. **Pagina 1 – Distribuzione polizze in scadenza**  
-   Panoramica dei rinnovi e mancati rinnovi.
+   Panoramica generale dei rinnovi e dei mancati rinnovi per tipologia di veicolo e periodo.
 
 2. **Pagina 2 – Mancati rinnovi e impatto economico**  
-   Analisi del premio perso e correlazione con l’anzianità di contratto.
+   Analisi del premio perso nel tempo e relativa incidenza economica.
 
 3. **Pagina 3 – Dove si assicurano altrove**  
    Distribuzione per canale (online, tradizionale, ibrido) e compagnie di destinazione.
@@ -55,8 +51,8 @@ Analizzare i dati di rinnovo delle polizze RCA provenienti dal gestionale di age
 ---
 
 ## Strumenti e linguaggi
-- **Python:** pandas, numpy, time  
-- **Power BI:** Power Query, DAX, tooltip, KPI cards, decomposition tree, 
+- **Python:** pandas, numpy,
+- **Power BI:** Power Query, DAX, tooltip, KPI cards, decomposition tree
 - **Excel:** Power Query e funzioni di unione e pulizia  
 - **GitHub:** documentazione e repository finale
 
